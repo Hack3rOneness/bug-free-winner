@@ -39,3 +39,44 @@ http
     res.end(buffer);
   })
   .listen(3000);
+
+
+// index.js
+const puppeteer = require("puppeteer");
+const http = require("http");
+
+http.createServer(async (req, res) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setContent(`
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>HTML to PDF Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="invoice">
+    <h1>Our Invoice</h1>
+  </div>
+</body>
+</html>
+`)
+  const buffer = await page.pdf({ format: "A4" });
+  await browser.close();
+
+    res.end(buffer);
+}
+                  
+                  function generatePDF() {
+  // Choose the element that our invoice is rendered in.
+  const element = document.getElementById("invoice");
+  // Choose the element and save the PDF for our user.
+  html2pdf()
+    .set({ html2canvas: { scale: 4 } })
+    .from(element)
+    .save();
+}
