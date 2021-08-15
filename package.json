@@ -1,0 +1,12 @@
+// package.json
+{
+  "name": "puppeteer-pdf-example",
+  "version": "1.0.0",
+  "description": "Example of how to generate a PDF with Puppeteer",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "puppeteer": "^1.10.0"
+  }
+}
